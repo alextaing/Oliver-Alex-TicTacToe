@@ -20,9 +20,9 @@ export default function Game() {
         )
     });
     let status: any;
-    if (winner == "O") {
+    if (winner === "O") {
         status = "Oliver Wins... :/";
-    } else if (winner == "A"){
+    } else if (winner === "A"){
         status = "Alex Wins! :)";
     } else {
     status = "Next player: " + (aIsNext ? "Alex" : "Oliver");
