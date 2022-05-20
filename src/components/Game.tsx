@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Board from "./Board";
 
+/**
+ * Game component
+ */
 export default function Game() {
   const [history_0, setHistory] = useState([Array(9).fill(null)]);
   const [aIsNext, setaIsNext] = useState(true);
@@ -19,7 +22,7 @@ export default function Game() {
       </li>
     )
   });
-  let status: any;
+  let status: string;
   if (winner === "O") {
     status = "Oliver Wins... :/";
   } else if (winner === "A") {
@@ -59,7 +62,12 @@ export default function Game() {
   }
 }
 
-function calculateWinner(squares: any) {
+/**
+ * Determines who the winner is, if one exists.
+ * @param squares A 1x9 array representing a tic-tac-toe board instance
+ * @returns The winner, if one exists, otherwise null.
+ */
+function calculateWinner(squares: Array<string>) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
