@@ -22,14 +22,6 @@ export default function Game() {
       </li>
     )
   });
-  let status: string;
-  if (winner === "O") {
-    status = "Oliver Wins... :/";
-  } else if (winner === "A") {
-    status = "Alex Wins! :)";
-  } else {
-    status = "Next player: " + (aIsNext ? "Alex" : "Oliver");
-  }
 
   return (
     <div className="game">
@@ -40,7 +32,7 @@ export default function Game() {
         />
       </div>
       <div className="game-info">
-        <div>{status}</div>
+        <div>{getStatus()}</div>
         <ol>{moves}</ol>
       </div>
     </div>
@@ -60,14 +52,27 @@ export default function Game() {
     setStepNumber(stepNumber + 1);
     setaIsNext(!aIsNext);
   }
+
+  function getStatus(): string{
+    let status: string;
+    if (winner === "O") {
+      status = "Oliver Wins... :/";
+    } else if (winner === "A") {
+      status = "Alex Wins! :)";
+    } else {
+      status = "Next player: " + (aIsNext ? "Alex" : "Oliver");
+    }
+    return status;
+  }
+
 }
 
 /**
  * Determines who the winner is, if one exists.
  * @param squares A 1x9 array representing a tic-tac-toe board instance
- * @returns The winner, if one exists, otherwise null.
+ * @returns The winner as a string if one exists, otherwise null.
  */
-function calculateWinner(squares: Array<string>) {
+function calculateWinner(squares: string[]): string|null {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],

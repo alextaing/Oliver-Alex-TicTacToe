@@ -4,11 +4,13 @@ import Square from "./Square"
  * Props for {@link Board}
  */
 interface BoardProps {
-  /** Array 1x9 representing an instance of a TTT board, reading
+  /** 
+   * Array 1x9 representing an instance of a TTT board, reading
    * from left to right, top to bottom. 
    */
-  squares: Array<string>,
-  /** A function describing how the board will handle a click on a given
+  squares: string[],
+  /** 
+   * A function describing how the board will handle a click on a given
    * cell where i represents the 0 indexed cell location.
    */
   onClick: (i: number) => void;
