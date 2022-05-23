@@ -5,23 +5,15 @@ import Board from "./Board";
  * Game component
  */
 export default function Game() {
-  const [history_0, setHistory] = useState([Array(9).fill(null)]);
+  var [history, setHistory] = useState([Array(9).fill(null)]);
   const [aIsNext, setaIsNext] = useState(true);
   const [stepNumber, setStepNumber] = useState(0);
 
-  const history = history_0.slice(0, stepNumber + 1); // is this OK? it looks wrong.
-  const current = history[stepNumber].slice();
+  renderUpdatedHistory();
+
+  const current = getCurrentBoard();
   const winner = calculateWinner(current);
-  const moves = history.map((step, move) => {
-    const desc = move ?
-      'Go to move #' + move :
-      'Go to game start';
-    return (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>{desc}</button>
-      </li>
-    )
-  });
+  const moves = getMovesElement();
 
   return (
     <div className="game">
@@ -65,6 +57,26 @@ export default function Game() {
     return status;
   }
 
+  function getCurrentBoard(): string[] {
+    return history[stepNumber].slice();
+  }
+
+  function getMovesElement(): JSX.Element[] {
+    return history.map((step, move) => {
+      const desc = move ?
+        'Go to move #' + move :
+        'Go to game start';
+      return (
+        <li key={move}>
+          <button onClick={() => jumpTo(move)}>{desc}</button>
+        </li>
+      )
+    });
+  }
+
+  function renderUpdatedHistory() {
+    history = history.slice(0, stepNumber + 1);
+  }
 }
 
 /**
