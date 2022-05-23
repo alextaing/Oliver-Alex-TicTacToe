@@ -1,6 +1,11 @@
+import Game from './components/Game';
+
 function App() {
   return (
-    <h1>TEST</h1>
+    <div>
+      <h1>Oshi v. Alex</h1>
+      <Game />
+    </div>
   );
 }
 
